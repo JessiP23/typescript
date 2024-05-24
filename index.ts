@@ -1,82 +1,54 @@
-function sumn(a: number, b: number): number {
-    return a + b;
-};
-
-const TSresult = sumn(5, 8);
-console.log(TSresult);
-
-let learner: string = "Jessi";
-let age: number = 22;
-let isEnrolled: boolean = true;
-const colors: string[] = ["red", "blue", "yellow"];
-const numbers: number[] = [1,2,3,4,5];
-
-numbers.push(5);
-numbers.push(6);
-
-interface Learner {
-    id: string,
-    name: {
-        first: string,
-        last: string,
-    };
-    course: string,
-    grades: number[];
+//Vehicle class
+class Vehicle {
+  status: string = "stopped"; //default value of stopped
+  
+  //properties of the class such as make, model, and wheels
+  constructor(public make: string, public model: string, public wheels: number) {
+    this.make = make;
+    this.model = model;
+    this.wheels = wheels;
+  }
+  //method start with no parameters
+  //changes the status to started
+  start(): void {
+    this.status = "started";
+  }
+  //method named stop with no parameters
+  //changes the status property to stopped
+  stop(): void {
+    this.status = "stopped";
+  }
 }
 
-const john: Learner = {
-    id: "12345",
-    name: {
-        first: "Jessi",
-        last: "Pavia"
-    },
-    course: "Introduction to TypeScript",
-    grades: [100,100,100,90]
-};
-
-function logLearner(john: Learner) {
-    console.log(
-        `Learner ${john.name.first} ${john.name.last} is currently enrolled in ${john.course}`
-    );
+//Car class, inherites methods
+class Car extends Vehicle {
+  //parameters make and model
+  constructor(make: string, model: string) {
+    super(make, model, 4);
+  }
 }
-
-logLearner(john);
-
-//Tuples
-let locationLo: [number, string, boolean];
-locationLo = [34,"jessi", false];
-console.log(locationLo);
-
-
-//access modifiers: private, protected, public
-
-//aliases
-
-type User = {
-    username: string,
-    email: string,
-    password: string,
-    age: number,
-    admin: boolean,
-    dev?: boolean  //optional due to ?
+  
+class MotorCycle extends Vehicle {
+  constructor(make: string, model: string) {
+    super(make, model, 2);
+  }
 }
-
-interface Car {
-    year: number,
-    model: string
+  
+function printStatus(vehicle): void {
+  if (vehicle.status === "running") {
+    console.log("The vehicle is running.");
+  } else {
+    console.log("The vehicle is stopped.");
+  }
 }
-
-function createUser(obj: User): User {
-    const newUser = obj;
-    return newUser;
-}
-
-const user1: User = {
-    username: "Jessi",
-    email: "jessi@gmail.com",
-    password: "jessipavia",
-    age: 22,
-    admin: true
-}
-
-console.log('username', user1);
+  
+const myHarley = new MotorCycle("Harley-Davidson", "Low Rider S");
+myHarley.start();
+printStatus(myHarley);
+console.log(myHarley.make.toUppercase());
+  
+const myBuick = new Car("Buick", "Regal");
+//myBuick.wheels = myBuick.wheels - 1;
+console.log(myBuick.wheels);
+//console.log(myBuick.mdl);
+  
