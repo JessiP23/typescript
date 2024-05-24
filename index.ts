@@ -52,3 +52,25 @@ const myBuick = new Car("Buick", "Regal");
 console.log(myBuick.wheels);
 //console.log(myBuick.mdl);
   
+class NCycle<T> {
+  status: string = "stopped";
+  constructor(public make: T | T[], public model: T | T[], public wheels: number) {
+   this.make = make;
+   this.model = model;
+   this.wheels = wheels; 
+  }
+
+  start(): void{
+    this.status = 'started';
+  }
+
+  stop(): void {
+    this.status = 'stopped';
+  }
+
+  print(parameter?: number): void{
+    if (!Array.isArray(this.make) && !Array.isArray(this.model)) {
+      console.log(`This car is ${this.make.toString()}`);
+    }
+  }
+}
